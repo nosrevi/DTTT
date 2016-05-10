@@ -1,28 +1,8 @@
-<ion-view style="" id="page5" title="Login" hide-back-button="true">
+<ion-view style="" id="page5" title="Main" hide-back-button="true">
     <ion-content class="has-header" padding="true">
-        <form style="" class="list">
-            <ion-list style="">
-        
-        <!--Login Form-->
-                <label style="" class="item item-input">
-                    <span class="input-label">Jabber ID</span>  
-                    <input ng-model="user.jid" placeholder="cec@cisco.com" type="text">  <!--user class contains all the user inputs-->
-                </label>
-            
-        <label style="" class="item item-input">
-                    <span class="input-label">Password</span>
-                    <input ng-model="user.pass" placeholder="admin" type="password">  <!--user class contains all the user inputs-->
-                </label>
-            
-      </ion-list>
-            <div style="height: 40px;" class="spacer"></div>
-            
-      <!-- Onclick listener is 'login()' with parameter as 'user' object -->
-       <button  class="button button-stable button-block "  id="login-button" ng-click="login(user)" >Log in</button>  
-       
-       <!--Just moves to the Register Screen -->
-       <button  class="button button-stable button-block "  id="register-button" ng-click="goToRegister()" >Register</button>
-            
-      </form>
+        <div style="height: 40px;" class="spacer"></div>
+
+       <button  class="button button-stable button-block "  id="send-button" ng-click="send()" >Send!</button>  
+
     </ion-content>
 </ion-view>

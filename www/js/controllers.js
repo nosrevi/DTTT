@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, sharedConn, $state) {
+.controller('LoginCtrl', function($scope, sharedConn, $state) {
 //$scope is used to access the variables and functions defined within the html file
   $scope.goToRegister=function(){
     $state.go('register', {}, {location: "replace", reload: true});  //Forwards it to register page
@@ -10,6 +10,23 @@ angular.module('starter.controllers', [])
   $scope.login=function(user){  //gets user parameter
     //console.log(user.jid);
     sharedConn.login(user.jid, user.pass);
+  }
+})
+
+.controller('DashCtrl', function($scope, sharedConn, $state) {
+  $scope.send = function(){
+    var to_jid  = Strophe.getBareJidFromJid('zhanywan@cisco.com');
+    var timestamp = new Date().getTime();
+
+    //Creats a message xml dom object
+    //Timestamp is used as the unique id for each message.
+    //type = chat
+
+    var reqChannelsItems = $msg({id:timestamp, to:to_jid , type: 'chat' })
+                   .c("body").t('🏓 TT? (msg sent from my app)');
+
+    //Sends the message via connection object
+    sharedConn.getConnectObj().send(reqChannelsItems.tree());
   }
 })
 
@@ -27,7 +44,6 @@ angular.module('starter.controllers', [])
   $scope.remove = function(chat) {
   Chats.removeRoster(chat);  // Call the remove function
   };
-
 
   $scope.chatDetails=function(to_id){
   ChatDetailsObj.setTo(to_id);    // sets the to_jabber_id in the ChatDetails service so that it can be accessed within any class
@@ -124,8 +140,6 @@ angular.module('starter.controllers', [])
   }
 
   }
-
-
 
   //-------------------****Helper Functions*******-------------------------------------
   $scope.inputUp = function() {
